@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: questforge-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-questforge}
+      POSTGRES_USER: ${POSTGRES_USER:-questforge}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-questforge}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-questforge} -d ${POSTGRES_DB:-questforge}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-data:
