@@ -69,7 +69,7 @@ questforge/
 ## What's next
 
 The following pieces are intentionally **not** in this scaffold and will be
-added in later weeks:
+added in later:
 
 - AI Dungeon Master pipeline (Anthropic SDK, prompts, tool use)
 - Auth / user accounts / sessions
